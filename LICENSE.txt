@@ -1,0 +1,21 @@
+Copyright (c) 2025 fmdevpro
+
+This source code is made publicly available for educational and personal purposes only.
+
+PERMITTED:
+- Download, run, and modify this project for personal use or learning.
+- Study the code for educational purposes.
+- Create modified versions for personal use only.
+
+NOT PERMITTED:
+- Redistribute this code or its derivatives on any application store (such as Google Play Store, App Store, etc.) without explicit written permission from the author.
+- Use this code, its components, or derivatives for commercial purposes.
+- Redistribute the source code or compiled binaries without authorization.
+- Remove or modify this copyright notice.
+
+DISCLAIMER:
+This software is provided "as is", without warranties of any kind, express or implied. In no event shall the author be liable for any damages arising from the use of this software.
+
+For commercial licenses, special permissions, or usage inquiries, contact: [your email]
+
+All rights reserved.
