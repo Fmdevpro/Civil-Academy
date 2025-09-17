@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+@file:Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -21,3 +22,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Civil Academy"
 include(":app")
+include(":data")
+include(":domain")
+include(":presentation")

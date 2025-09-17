@@ -1,4 +1,4 @@
-package com.fmdev.civilacademy.ui.theme
+package com.fmdev.civilacademy.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.fmdev.civilacademy.R
+import com.fmdev.civilacademy.presentation.R
 
 val Gotham = FontFamily(
     Font(R.font.gotham_light, FontWeight.Light),

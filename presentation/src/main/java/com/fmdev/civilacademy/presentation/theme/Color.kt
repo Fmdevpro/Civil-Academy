@@ -1,4 +1,4 @@
-package com.fmdev.civilacademy.ui.theme
+package com.fmdev.civilacademy.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
