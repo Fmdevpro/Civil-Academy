@@ -4,44 +4,54 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.fmdev.civilacademy.ui.theme.CivilAcademyTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import com.fmdev.civilacademy.presentation.AppContent
+import com.fmdev.civilacademy.presentation.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val mainViewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        setUpEdgeToEdge()
         setContent {
-            CivilAcademyTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            SetSystemUi()
+            AppContent(mainViewModel = mainViewModel)
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    @Composable
+    fun SetSystemUi() {
+        val isSystemUIVisible by mainViewModel.isSystemUIVisible.collectAsState()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CivilAcademyTheme {
-        Greeting("Android")
+        LaunchedEffect(isSystemUIVisible) {
+            if (isSystemUIVisible) showSystemUI() else hideSystemUI()
+        }
+    }
+
+    private fun setUpEdgeToEdge() {
+        enableEdgeToEdge()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+    }
+
+    private fun hideSystemUI() {
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            hide(WindowInsetsCompat.Type.systemBars())
+            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+    }
+
+    private fun showSystemUI() {
+        WindowCompat.getInsetsController(window, window.decorView)
+            .show(WindowInsetsCompat.Type.systemBars())
     }
 }
