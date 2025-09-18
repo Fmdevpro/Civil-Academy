@@ -7,11 +7,15 @@ import com.fmdev.civilacademy.presentation.navigation.AppNavigation
 import com.fmdev.civilacademy.presentation.theme.CivilAcademyTheme
 
 @Composable
-fun AppContent() {
+fun AppContent(mainViewModel: MainViewModel) {
     val isDarkTheme = isSystemInDarkTheme()
     val navController = rememberNavController()
 
     CivilAcademyTheme(darkTheme = isDarkTheme) {
-        AppNavigation(navController = navController, isDarkTheme = isDarkTheme)
+        AppNavigation(
+            navController = navController,
+            isDarkTheme = isDarkTheme,
+            mainViewModel = mainViewModel
+        )
     }
 }

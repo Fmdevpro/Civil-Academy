@@ -6,13 +6,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.fmdev.civilacademy.presentation.MainViewModel
 import com.fmdev.civilacademy.presentation.screen.login.screen.LoginScreen
 
 @Composable
-fun AppNavigation(navController: NavHostController, isDarkTheme: Boolean) {
+fun AppNavigation(
+    navController: NavHostController,
+    isDarkTheme: Boolean,
+    mainViewModel: MainViewModel = hiltViewModel()
+    ) {
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -23,7 +29,9 @@ fun AppNavigation(navController: NavHostController, isDarkTheme: Boolean) {
                 modifier = Modifier.padding(paddingValues)
             ) {
                 composable<LoginNavigation> {
-                    LoginScreen()
+                    LoginScreen(
+                        hideSystemUI = { mainViewModel.hideSystemUI() },
+                    )
                 }
             }
         }
