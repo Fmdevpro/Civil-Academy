@@ -22,7 +22,9 @@ fun AppNavigation(
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
-        Scaffold { paddingValues ->
+        Scaffold(
+            topBar = {}
+        ) { paddingValues ->
             NavHost(
                 navController = navController,
                 startDestination = LoginNavigation,
