@@ -121,3 +121,6 @@ obj/
 
 # Google Play Store assets
 ic_launcher-playstore.png
+
+# Gradle properties local
+keystore.properties
