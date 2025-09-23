@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.fmdev.data"
+    namespace = "com.fmdev.civilacademy.di"
     compileSdk = 36
 
     defaultConfig {
@@ -42,17 +42,20 @@ kotlin {
 dependencies {
 
     api(project(":domain"))
-    api(project(":shared"))
+    api(project(":data"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    // Testing
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
