@@ -306,13 +306,33 @@ graph TD
 
 ## 🎨 Screenshots & Demo
 
-### Light & Dark Mode Support
-The app adapts seamlessly to system theme preferences with complete Material You integration.
+### 🎥 App Demo (Light & Dark Mode)
+The following demo showcases the splash, login and register flow in both light and dark mode.
 
-| Feature            | Light Mode              | Dark Mode                 |
-|--------------------|-------------------------|---------------------------|
-| **Splash Screen**  | Smooth branded loading  | Adaptive to system theme  |
-| **Authentication** | Clean, accessible forms | Eye-friendly dark variant |
+<p align="center">
+  <img src="demo/gif/opositate_presentation.gif" alt="App Demo" />
+</p>
+
+### 📱 Screenshots Breakdown
+Detailed screenshots of splash, login and register in light and dark mode.
+
+#### Light Mode
+<p align="center">
+  <img src="demo/screenshot/Screenshot_20250904_142542.png" alt="Splash Light" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135756.png" alt="Login Light" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135809.png" alt="Register Light" width="180"/>
+</p>
+
+#### Dark Mode
+<p align="center">
+  <img src="demo/screenshot/Screenshot_20250904_142520.png" alt="Splash Dark" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135824.png" alt="Login Dark" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135831.png" alt="Register Dark" width="180"/>
+</p>
 
 ### Interactive Components
 

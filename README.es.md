@@ -307,14 +307,33 @@ graph TD
 
 ## 🎨 Capturas y Demo
 
-### Soporte para tema claro y oscuro
-Soporte total de Material You según preferencias del sistema.
+### 🎥 Demo de la App (Modo Claro & Oscuro)
+La siguiente demo muestra el flujo de splash, login y registro en ambos modos: claro y oscuro.
 
-| Funcionalidad          | Tema Claro                       | Tema Oscuro                     |
-|------------------------|----------------------------------|---------------------------------|
-| **Pantalla de Inicio** | Carga con marca fluida           | Adaptada al tema del sistema    |
-| **Autenticación**      | Formularios limpios y accesibles | Variante amigable para la vista |
+<p align="center">
+  <img src="demo/gif/opositate_presentation.gif" alt="Demo de la App" />
+</p>
 
+### 📱 Desglose de Capturas
+Capturas detalladas de splash, login y registro en modo claro y oscuro.
+
+#### Modo Claro
+<p align="center">
+  <img src="demo/screenshot/Screenshot_20250904_142542.png" alt="Splash Claro" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135756.png" alt="Login Claro" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135809.png" alt="Registro Claro" width="180"/>
+</p>
+
+#### Modo Oscuro
+<p align="center">
+  <img src="demo/screenshot/Screenshot_20250904_142520.png" alt="Splash Oscuro" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135824.png" alt="Login Oscuro" width="180"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="demo/screenshot/Screenshot_20250904_135831.png" alt="Registro Oscuro" width="180"/>
+</p>
 
 ### Componentes Interactivos
 
