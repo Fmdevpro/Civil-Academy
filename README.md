@@ -20,7 +20,7 @@
 ![Material Design](https://img.shields.io/badge/-Material%20Design-4CAF50?style=for-the-badge&logo=material-design&logoColor=white)
 
 <!-- Architecture -->
-![MVVM](https://img.shields.io/badge/-MVVM-FF6900?style=for-the-badge&logo=android&logoColor=white)
+![MVI](https://img.shields.io/badge/-MVI-FF6900?style=for-the-badge&logo=android&logoColor=white)
 ![Clean Architecture](https://img.shields.io/badge/-Clean%20Architecture-FF6900?style=for-the-badge&logo=archlinux&logoColor=white)
 ![SOLID Principles](https://img.shields.io/badge/-SOLID%20Principles-FF6900?style=for-the-badge)
 
@@ -72,21 +72,25 @@ The app combines psychotechnical test training with comprehensive study material
 ### Clean Architecture Implementation
 ```
 ┌─ app/                          # Main configuration & navigation
-├─ presentation/                 # UI layer (Compose + ViewModels)
+├─ presentation/                 # UI layer (Compose + ViewModels with MVI)
 ├─ domain/                       # Business logic & use cases
 ├─ data/                         # Data sources & repositories
-└─ shared/                       # Centralized common utilities
+├─ androidshared/                # Android-dependent utilities
+├─ shared/                       # Platform-independent utilities
+└─ di/                           # Dependency injection modules
 ```
 
 ### Tech Stack
-- **🎨 UI Framework**: Jetpack Compose with Material 3 Design
-- **🏛️ Architecture**: MVVM + Clean Architecture
-- **🔧 Dependency Injection**: Hilt 2.57.1
-- **☁️ Backend**: Firebase BOM 34.3.0 (Auth + Firestore + Storage)
-- **📊 State Management**: Compose State + StateFlow
-- **🔄 Async Operations**: Kotlin Coroutines 1.10.2 + Flow
-- **🔨 Build Tools**: Kotlin 2.2.20, AGP 8.12.3
-- **📱 Target SDK**: API 36 (Android 14)
+- **UI Framework**: Jetpack Compose 2025.09.01 with Material 3 Design
+- **Architecture**: MVI + Clean Architecture
+- **Dependency Injection**: Hilt 2.57.2
+- **Backend**: Firebase BOM 34.3.0 (Auth + Firestore + Analytics + Crashlytics)
+- **State Management**: StateFlow + Channels for side effects
+- **Async Operations**: Kotlin Coroutines 1.10.2 + Flow
+- **Local Storage**: DataStore 1.1.7
+- **Build Tools**: Kotlin 2.2.20, AGP 8.12.3, KSP 2.2.20-2.0.2
+- **Target SDK**: API 36 (Android 16)
+- **Testing: JUnit**: 4.13.2, Mockito 5.20.0, Turbine 1.2.1
 
 ---
 
@@ -96,18 +100,18 @@ The app combines psychotechnical test training with comprehensive study material
 - ✅ **Authentication System**: Complete Firebase Auth integration
 - ✅ **User Registration**: Email/password registration with verification
 - ✅ **Login System**: Secure login with email verification check
-- ✅ **Session Persistence**: The session remains active so you don't need to log in every time you open the app.
+- ✅ **Session Persistence**: The session remains active so you don't need to log in every time you open the app
 - ✅ **Password Reset**: Email-based password recovery
-- ✅ **Clean Architecture**: MVVM + Clean Architecture implementation
+- ✅ **Clean Architecture**: MVI + Clean Architecture implementation
 - ✅ **Modern UI**: Jetpack Compose with Material 3 Design
 - ✅ **Navigation**: Type-safe navigation between screens
 - ✅ **Dependency Injection**: Hilt configuration
 
 ### 🚧 In Development
-- [ ] **Psychotechnical Tests**: Adaptive test system
-- [ ] **Study Content**: Structured learning materials
-- [ ] **Progress Tracking**: User performance analytics
-- [ ] **Offline Support**: Room database integration
+- 🔄 **Psychotechnical Tests**: Adaptive test system
+- 🔄 **Study Content**: Structured learning materials
+- 🔄 **Progress Tracking**: User performance analytics
+- 🔄 **Offline Support**: Room database integration
 
 ### 📋 Planned Features
 - [ ] **Advanced Analytics**: Multi-dimensional progress tracking
@@ -136,8 +140,8 @@ The app combines psychotechnical test training with comprehensive study material
    ```
 
 2. **Enable Required Services**
-   - Authentication (Email/Password, Google Sign-In)
-   - Analytics (optional)
+    - Authentication (Email/Password, Google Sign-In)
+    - Analytics (optional)
 
 3. **Download Configuration**
    ```bash
@@ -146,9 +150,9 @@ The app combines psychotechnical test training with comprehensive study material
    ```
 
 4. **Configure Authentication**
-   - Enable Email/Password provider
-   - Configure authorized domains
-   - Set up security rules
+    - Enable Email/Password provider
+    - Configure authorized domains
+    - Set up security rules
 
 ### Installation
 
@@ -210,110 +214,218 @@ android {
 ### Module Dependencies
 ```mermaid
 graph TD
-    A["📱 APP<br/>Main Activity<br/>DI Configuration"]
-    B["🎨 PRESENTATION<br/>UI & ViewModels"]
-    C["🏛️ DOMAIN<br/>Business Logic<br/>Java Library"]
-    D["💾 DATA<br/>Repositories & Sources<br/>Android Library"]
-    E["🛠️ SHARED<br/>Common Utilities"]
-    F["💉 DI<br/>Dependency Injection<br/>Android Library"]
+    A["📱 APP<br/>MainActivity<br/>Navigation"]
+    B["🎨 PRESENTATION<br/>UI & ViewModels<br/>MVI Pattern"]
+    C["🏛️ DOMAIN<br/>Business Logic<br/>Use Cases"]
+    D["💾 DATA<br/>Repositories<br/>Data Sources"]
+    E["🛠️ SHARED<br/>Common Utilities<br/>Platform-Independent"]
+    F["📱 ANDROIDSHARED<br/>Android Utilities<br/>Context-Dependent"]
+    G["💉 DI<br/>Hilt Modules<br/>Dependency Injection"]
 
     A --> B
     A --> C
     A --> D
     A --> F
+    A --> G
 
     B --> C
     B --> F
+    B --> G
 
     D --> C
     D --> F
+    D --> G
 
-    C --> F
+    C --> E
+    C --> G
+
+    F --> E
+    F --> G
 
     classDef app fill:#2e7d32,stroke:#1b5e20,color:#fff
     classDef domain fill:#1976d2,stroke:#0d47a1,color:#fff
     classDef presentation fill:#4F4789,stroke:#1a237e,color:#fff
     classDef data fill:#d32f2f,stroke:#b71c1c,color:#fff
     classDef shared fill:#f57c00,stroke:#e65100,color:#fff
-    classDef di fill:#FFC107,stroke:#FFA000,color:#fff
+    classDef androidshared fill:#00897b,stroke:#00695c,color:#fff
+    classDef di fill:#FFC107,stroke:#FFA000,color:#000
 
     class A app
     class B presentation
     class C domain
     class D data
     class E shared
-    class F di
+    class F androidshared
+    class G di
 ```
 
 ### Key Components
 
-#### 🎨 Presentation Layer
-- **Compose Screens**: Modern declarative UI
-- **ViewModels**: State management and business logic orchestration
-- **Navigation**: Type-safe navigation with arguments
-- **Theme System**: Material 3 with dynamic theming
+#### Presentation Layer
+- **Compose Screens**: Modern declarative UI with Material 3
+- **ViewModels**: MVI pattern with StateFlow and Channels
+- **Navigation**: Type-safe navigation with Kotlin Serialization
+- **Theme System**: Material 3 with dynamic theming support
+- **Custom Components**: Reusable UI components (LoadingButton, CustomTextField)
 
-#### 🏛️ Domain Layer
+#### Domain Layer
 - **Use Cases**: Single-responsibility business operations
 - **Entities**: Core business models
 - **Repositories**: Data access abstractions
 - **Validation**: Input validation and business rules
+- **No Android Dependencies**: Testable pure Kotlin code
 
-#### 💾 Data Layer
+#### Data Layer
 - **Remote Sources**: Firebase integrations
-- **Local Sources**: Room database for offline support
+- **Local Sources**: DataStore for preferences (Room planned)
+- **Repository Implementations**: Concrete data access
 - **Mappers**: Data transformation between layers
-- **Caching**: Intelligent data caching strategies
+- **Error Handling**: Comprehensive error mapping
 
-#### 💉 DI Layer
+#### DI Layer
 - **Hilt Modules**: Centralized dependency provision
 - **Custom Annotations**: Scoping and qualification
 - **Injection Points**: Constructor, field, and method injection
+- **Multi-Module Support**: Dependencies across all modules
 
-#### 🛠️ Shared Layer
-- **Utility Functions**: Common helpers and extensions
+#### Shared Layer
+- **Utility Functions**: Platform-independent helpers
 - **Constants**: Global application constants
 - **Base Classes**: Reusable abstract components
 - **Type Definitions**: Shared data structures and enums
+- **No Android Dependencies**: Testable pure Kotlin code
+
+#### AndroidShared Layer
+- **Platform Bridge**: Connects shared logic with Android-specific APIs
+- **Google Sign-In Integration**: Provides interfaces for authentication with Google
+- **Context-Dependent Services**: Manages operations requiring Android framework access
+- **Interface Abstractions**: Keeps shared code free from Android dependencies
+- **Clean Architecture Compliance**: Preserves separation of concerns across modules
 
 ---
 
 ## 🧪 Testing Strategy
 
-### Unit Tests
-```bash
-# Run unit tests
-./gradlew testDebugUnitTest
+Civil Academy uses **unit tests** for business logic (JVM modules) and Android modules, with **Jacoco** for coverage reporting.
 
-# Generate coverage report
-./gradlew jacocoTestDebugUnitTestReport
-# Note: JaCoCo coverage reporting not yet configured, will be added in future versions
-```
+### Unit Tests
+
+#### Run All Unit Tests from Root
+
+From the project root, you can run **all unit tests** at once:
+
+- **All JVM modules together** (`:domain`, `:shared`):
+  ```bash
+  ./gradlew test
+  ```
+
+- **All Android modules together** (`:app`, `:data`, `:androidshared`):
+  ```bash
+  ./gradlew testDebugUnitTest
+  ```
+
+- **Generate combined coverage report**:
+  ```bash
+  ./gradlew jacocoRootReport
+  ```
+
+- **Run all tests and generate combined coverage report**:
+  ```bash
+  ./gradlew test testDebugUnitTest jacocoRootReport
+  ```
+
+> `jacocoRootReport` depends on all unit test tasks and produces a **combined HTML and XML report** for Android and JVM modules.  
+> Report locations:
+> - HTML: `build/reports/jacocoRootReport/html/index.html`
+> - XML: `build/reports/jacocoRootReport/report.xml` (for IntelliJ / CI)
+
+#### Run Tests by Module
+
+You can execute tests for a **specific module**:
+
+- **JVM module (`:domain`)**:
+  ```bash
+  ./gradlew :domain:test
+  ```
+
+- **Android module (`:data`)**:
+  ```bash
+  ./gradlew :data:testDebugUnitTest
+  ```
+
+> Replace the module name for other modules.
+
+#### Generate Coverage Report by Module
+
+Coverage reports can also be generated **per module** after running the corresponding tests:
+
+- **JVM module (`:domain`)**:
+  ```bash
+  # First, run tests
+  ./gradlew :domain:test
+  
+  # Then generate Jacoco report
+  ./gradlew :domain:jacocoJvmReport
+  
+  # Run tests and generate Jacoco report
+  ./gradlew :domain:clean :domain:test :domain:jacocoJvmReport
+  ```
+
+- **Android module (`:data`)**:
+  ```bash
+  # First, run tests
+  ./gradlew :data:testDebugUnitTest
+  
+  # Then generate Jacoco report
+  ./gradlew :data:jacocoAndroidReport
+  
+  # Run tests and generate Jacoco report
+  ./gradlew :data:clean :data:testDebugUnitTest :data:jacocoAndroidReport
+  ```
+
+> Each module task generates HTML and XML reports in their respective build directories.  
+> Example: `data/build/reports/jacoco/index.html`
+
+#### Notes
+
+- **Jacoco only reports unit tests**.
+- Run **tests first** before generating reports.
+- Combined root report (`jacocoRootReport`) **automatically reports all module tests** and produces a single aggregated coverage report.
 
 ### Integration Tests
 ```bash
 # Run instrumented tests
 ./gradlew connectedDebugAndroidTest
 ```
+> ⚠️ **Status**: In progress
 
 ### UI Tests
 ```bash
 # Run Compose UI tests
 ./gradlew :presentation:connectedDebugAndroidTest
 ```
+> ⚠️ **Status**: In progress
+
+### Test Stack
+- **JUnit 4.13.2**: Test framework
+- **Mockito 5.20.0**: Mocking framework
+- **Mockito-Kotlin 6.1.0**: Kotlin-friendly mocking
+- **Turbine 1.2.1**: Flow testing utility
+- **Truth 1.4.5**: Fluent assertions
+- **Coroutines Test 1.10.2**: Coroutine testing utilities
 
 ---
 
 ## 🎨 Screenshots & Demo
 
-### 🎥 App Demo (Light & Dark Mode)
+### App Demo (Light & Dark Mode)
 The following demo showcases the splash, login and register flow in both light and dark mode.
 
 <p align="center">
   <img src="demo/gif/opositate_presentation.gif" alt="App Demo" />
 </p>
 
-### 📱 Screenshots Breakdown
+### Screenshots Breakdown
 Detailed screenshots of splash, login and register in light and dark mode.
 
 #### Light Mode
@@ -343,27 +455,43 @@ Detailed screenshots of splash, login and register in light and dark mode.
 - **Material 3**: Follows latest design guidelines
 
 #### Smart Text Inputs
-- **Real-time Validation**: Instant feedback on input
+- **Real-time Validation**: Instant feedback with MVI pattern
 - **Error Handling**: Clear, actionable error messages
 - **Password Management**: Secure input with visibility toggle
 - **Keyboard Optimization**: Context-appropriate input types
+- **Focus Management**: Smooth focus transitions
+
+#### Validation Support Dialog System
+- **Reusable Components**: Generic dialog with field validation
+- **MVI Integration**: State-driven dialog behavior
+- **Confirmation Flows**: Email change, password reset dialogs
+- **Validation Support**: Multiple field types with live validation
 
 ---
 
 ## 🔒 Security & Privacy
 
 ### Data Protection
-- **End-to-End Encryption**: Sensitive data encrypted at rest and in transit
-- **GDPR Compliance**: Full user data control and deletion rights
+- **End-to-End Encryption**: Firebase encryption for data at rest and in transit
+- **GDPR Compliance**: User data control and deletion rights
 - **Minimal Permissions**: Only essential permissions requested
-- **Secure Storage**: Keystore integration for sensitive data
-- **Input Validation**: Client-side validation for user inputs
+- **Secure Storage**: DataStore with encryption for sensitive data
+- **Input Validation**: Multi-layer validation (UI, ViewModel, UseCase)
+- **ProGuard**: Code obfuscation in release builds
 
 ### Privacy Features
 - **Firebase Analytics**: Anonymous usage analytics (optional)
-- **User Control**: Users can delete their accounts
+- **Account Deletion**: Users can delete their accounts and data
 - **Secure Communication**: HTTPS encryption for all network requests
-- **Local Data**: User preferences stored securely on device
+- **Local Data**: Preferences stored securely on device
+- **No Tracking**: No third-party tracking or advertising SDKs
+- **Crashlytics**: Opt-in crash reporting without PII
+
+### Security Best Practices
+- **Password Requirements**: Strong password validation
+- **Email Verification**: Mandatory email verification for registration
+- **Session Management**: Secure token handling
+- **Error Messages**: Generic error messages to prevent information disclosure
 
 ---
 
@@ -379,24 +507,23 @@ Detailed screenshots of splash, login and register in light and dark mode.
 ```bash
 # Production keystore is required for release builds
 # Not included in repository for security reasons
-# Contact maintainers for authorized deployments
 ```
 
 ---
 
 ## 📋 Roadmap
 
-### 🧠 Psychotechnical Training
+### Psychotechnical Training
 - [ ] **Adaptive Difficulty**: Progressive test complexity based on performance
 - [ ] **Multiple Test Types**: Logic, numerical reasoning, spatial awareness
 - [ ] **Instant Feedback**: Detailed explanations for incorrect answers
 
-### 📚 Study System
+### Study System
 - [ ] **Organized Content**: Hierarchical topic structure
 - [ ] **Offline Access**: Download materials for study without internet
 - [ ] **Progress Synchronization**: Cross-device learning continuity
 
-### 📈 Advanced Analytics
+### Advanced Analytics
 - [ ] **Multi-dimensional Progress**: Track skills across different areas
 - [ ] **Performance Insights**: Identify strengths and improvement areas
 - [ ] **Visual Reports**: Interactive charts and trend analysis
@@ -408,8 +535,7 @@ Detailed screenshots of splash, login and register in light and dark mode.
 - [ ] **Multi-language Support**: Localization for global audience (now only English and Spanish support)
 
 ### Technical Improvements
-- [ ] **Testing**: Implement comprehensive unit and integration tests
-- [ ] **Code Coverage**: Add JaCoCo reporting and achieve 90%+ coverage
+- [ ] **Testing**: Implement comprehensive integration tests
 - [ ] **CI/CD**: Set up automated testing and deployment pipeline
 - [ ] **Performance**: Optimize app performance and memory usage
 

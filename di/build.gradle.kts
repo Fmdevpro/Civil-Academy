@@ -1,8 +1,11 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
+    // Android
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+
+    // Hilt
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
 }
@@ -14,7 +17,6 @@ android {
     defaultConfig {
         minSdk = 30
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -40,9 +42,14 @@ kotlin {
 }
 
 dependencies {
-
-    api(project(":domain"))
+    // Modules
+    implementation(project(":domain"))
     api(project(":data"))
+
+    // Core & Compose
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -51,12 +58,9 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.hilt.testing)
     ksp(libs.hilt.compiler)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // DataStore
+    implementation(libs.androidx.datastore)
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login Screen -->
+    <string name="login_screen__content_description__brain_image">Imagen Cerebro</string>
+    <string name="login_screen__title_text__welcome">Bienvenido</string>
+    <string name="login_screen__text__sign_in">Inicia sesión para continuar</string>
+    <string name="login_screen__label_text_field__email">Correo</string>
+    <string name="login_screen__label_text_field__password">Contraseña</string>
+    <string name="login_screen__text__forget_your_password">¿Hás olvidado tu contraseña?</string>
+    <string name="login_screen__text_btn__google">Login con Google</string>
+    <string name="login_screen__text_btn__new_user">¿Nuevo usuario?\nRegístrate</string>
+    <string name="login_screen__title_text__login_successful">Login realizado con éxito</string>
+    <string name="login_screen__text__login_successful">Has iniciado sesión exitosamente</string>
+    <string name="login_screen__title_text__login_error">Error de inicio de sesión</string>
+    <string name="login_screen__title_text__reset_password_successful">Restablecimiento de contraseña exitoso</string>
+    <string name="login_screen__text__reset_password_successful">El correo para restablecer la contraseña se ha enviado exitosamente</string>
+    <string name="login_screen__text__reset_password_error">Error al restablecer la contraseña</string>
+    <string name="login_screen__text__generic_error">Ha ocurrido un error</string>
+    <string name="login_screen__reset_password_dialog__title">Reestablecer contraseña</string>
+    <string name="login_screen__reset_password_dialog__first_field_label">Correo</string>
+    <string name="login_screen__reset_password_dialog__second_field_label">Confirmar correo</string>
+    <string name="login_screen__reset_password_dialog__confirm_button_text">Reestablecer</string>
+    <string name="login_screen__reset_password_dialog__cancel_button_text">Cancelar</string>
+    <string name="login_screen__reset_password_dialog__explaining_text">Ingrese su dirección de correo\nEnviaremos un mensaje con un enlace para reestablecer su contraseña</string>
+    <string name="login_screen__resend_verification_email_dialog__title">Correo no verificado</string>
+    <string name="login_screen__resend_verification_email_dialog__first_field_label">Correo</string>
+    <string name="login_screen__resend_verification_email_dialog__second_field_label">Confirmar correo</string>
+    <string name="login_screen__resend_verification_email_dialog__confirm_button_text">Reenviar</string>
+    <string name="login_screen__resend_verification_email_dialog__cancel_button_text">Cancelar</string>
+    <string name="login_screen__resend_verification_email_dialog__explaining_text">Hemos detectado que tu correo no ha sido verificado\nPodemos reenviar un mensaje con un enlace para verificar su correo\nSi lo desea rellene su correo</string>
+    <string name="login_screen__reset_password_success">Contraseña reseteada</string>
+    <string name="login_screen__verification_email_sent">Email de verificación enviado</string>
+    <string name="login_screen__login_text">Acceder con Correo</string>
+    <string name="login_screen__google_login_text">Acceder con Google</string>
+
+    <!-- Custom Login Text Field -->
+    <string name="custom_login_text_field__content_description__password_eye_image">Botón alternar visibilidad de la contraseña</string>
+    <string name="custom_login_text_field__content_description__ic_info">Icono de Información</string>
+    <string name="custom_login_text_field__supporting_text__empty_field">Rellena este campo</string>
+    <string name="custom_login_text_field__supporting_text__invalid_email">Correo inválido</string>
+    <string name="custom_login_text_field__supporting_text__invalid_password">Contraseña inválida</string>
+    <string name="custom_login_text_field__supporting_text__emails_do_not_match">Los campos no coinciden</string>
+    <string name="custom_login_text_field__supporting_text__wrong_email">Correo incorrecto</string>
+    <string name="custom_login_text_field__supporting_text__wrong_password">Contraseña incorrecta</string>
+    <string name="custom_login_text_field__supporting_text__email_too_long">Correo demasiado largo</string>
+    <string name="custom_login_text_field__supporting_text__password_too_short">Contraseña demasiado corta</string>
+    <string name="custom_login_text_field__supporting_text__password_too_long">Contraseña demasiado larga</string>
+    <string name="custom_login_text_field__supporting_text__username_too_long">Nombre de usuario demasiado largo</string>
+    <string name="custom_login_text_field__supporting_text__invalid_field">Campo inválido</string>
+
+    <!-- Error Messages -->
+    <string name="error_message__login_failed">Error al realizar login</string>
+    <string name="error_message__login__empty_email">Debes introducir un correo</string>
+    <string name="error_message__login__empty_password">Debes introducir una contraseña</string>
+    <string name="error_message__login__email_not_verified">Correo no verificado</string>
+    <string name="error_message__login__unknown_error">Ha ocurrido un error</string>
+    <string name="error_message__login__firebase_error">Error de Firebase</string>
+    <string name="error_message__login__email_not_registered">Correo no registrado</string>
+    <string name="error_message__login__wrong_password">Contraseña incorrecta</string>
+    <string name="error_message__login__network_error">Error de red</string>
+    <string name="error_message__reset_password__empty_email">Debes introducir un correo</string>
+    <string name="error_message__reset_password__unknown_error">Ha ocurrido un error</string>
+    <string name="error_message__reset_password__firebase_error">Error de Firebase</string>
+    <string name="error_message__google_sign_in__unknown_error">Ha ocurrido un error</string>
+    <string name="error_message__google_sign_in__empty_id_token">Debes introducir un ID token</string>
+    <string name="error_message__google_sign_in__invalid_id_token">ID token no válido</string>
+    <string name="error_message__resend_verification_email__empty_email">Debes introducir un correo</string>
+    <string name="error_message__resend_verification_email__unknown_error">Ha ocurrido un error</string>
+    <string name="error_message__resend_verification_email__firebase_error">Error de Firebase</string>
+    <string name="error_message__firebase__network_error">Error de red</string>
+    <string name="error_message__firebase__invalid_user">Usuario inválido</string>
+    <string name="error_message__firebase__invalid_credentials">Credenciales inválidas</string>
+    <string name="error_message__firebase__user_collision">Colisión de usuario</string>
+    <string name="error_message__firebase__user_disabled">Usuario deshabilitado</string>
+    <string name="error_message__firebase__too_many_requests">Demasiados intentos</string>
+    <string name="error_message__firebase__unknown_error">Ha ocurrido un error</string>
+
+</resources>

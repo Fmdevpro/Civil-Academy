@@ -12,8 +12,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.splashscreen.SplashScreenViewProvider
@@ -21,7 +19,8 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.fmdev.civilacademy.presentation.AppContent
-import com.fmdev.civilacademy.presentation.MainViewModel
+import com.fmdev.civilacademy.presentation.screen.main.MainSideEffect
+import com.fmdev.civilacademy.presentation.screen.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,17 +32,20 @@ class MainActivity : ComponentActivity() {
         setUpEdgeToEdge()
         setupSplashScreen()
         setContent {
-            SetSystemUi()
+            ObserveSideEffects()
             AppContent(mainViewModel = mainViewModel)
         }
     }
 
     @Composable
-    fun SetSystemUi() {
-        val isSystemUIVisible by mainViewModel.isSystemUIVisible.collectAsState()
-
-        LaunchedEffect(isSystemUIVisible) {
-            if (isSystemUIVisible) showSystemUI() else hideSystemUI()
+    private fun ObserveSideEffects() {
+        LaunchedEffect(Unit) {
+            mainViewModel.sideEffect.collect { effect ->
+                when (effect) {
+                    is MainSideEffect.HideSystemUI -> hideSystemUI()
+                    is MainSideEffect.ShowSystemUI -> showSystemUI()
+                }
+            }
         }
     }
 

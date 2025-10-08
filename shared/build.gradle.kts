@@ -1,4 +1,5 @@
 plugins {
+    // Java
     id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
 }
@@ -13,5 +14,6 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.junit)
+    // Testing
+    testImplementation(libs.junit)
 }

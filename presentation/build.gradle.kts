@@ -1,12 +1,22 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
+    // Android
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+
+    // Compose
     alias(libs.plugins.kotlin.compose)
+
+    // Serialization
     alias(libs.plugins.kotlinxSerialization)
+
+    // Hilt
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+
+    // Jacoco reports
+    id("jacoco")
 }
 
 android {
@@ -28,10 +38,34 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
+        }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    testOptions {
+        unitTests.all { test ->
+            test.doFirst {
+                val byteBuddyAgentJar = test.classpath
+                    .filter { it.name.contains("byte-buddy-agent") }
+                    .firstOrNull()
+
+                if (byteBuddyAgentJar != null) {
+                    test.jvmArgs("-javaagent:${byteBuddyAgentJar.absolutePath}")
+                } else {
+                    test.logger.warn("Byte-buddy-agent JAR not found for test task ${test.name}. Mockito agent might not be attached.")
+                }
+            }
+            test.configure<JacocoTaskExtension> {
+                isIncludeNoLocationClasses = true
+                excludes = listOf("jdk.internal.*")
+            }
+        }
     }
 }
 
@@ -42,28 +76,30 @@ kotlin {
 }
 
 dependencies {
-
-    // Domain Module
+    // Modules
     api(project(":domain"))
+    api(project(":shared"))
+    api(project(":di"))
 
     // Core & Compose
     implementation(libs.androidx.core.ktx)
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.bundles.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.test)
+
     // ViewModel KTX & Lifecycle Runtime Compose
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.bundles.lifecycle)
 
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.ui.tooling)
+    implementation(libs.core.ktx)
+    debugImplementation(libs.ui.tooling)
     ksp(libs.hilt.compiler)
 
     // Navigation
@@ -71,6 +107,13 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.bundles.mockito.test)
+    testImplementation(libs.turbine)
+    androidTestImplementation(libs.bundles.testing.android)
+}
+tasks.withType<Test> {
+    configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*")
+    }
 }

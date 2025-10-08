@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login Screen -->
+    <string name="login_screen__title_text__welcome">Welcome</string>
+    <string name="login_screen__text__sign_in">Sign in to continue</string>
+    <string name="login_screen__label_text_field__email">Email</string>
+    <string name="login_screen__label_text_field__password">Password</string>
+    <string name="login_screen__text__forget_your_password">Forgot your password?</string>
+    <string name="login_screen__text_btn__google">Login with Google</string>
+    <string name="login_screen__text_btn__new_user">New user?\nRegister</string>
+    <string name="login_screen__content_description__brain_image">Brain Image</string>
+    <string name="login_screen__title_text__login_successful">Login Successful</string>
+    <string name="login_screen__text__login_successful">You have successfully logged in</string>
+    <string name="login_screen__title_text__login_error">Login Error</string>
+    <string name="login_screen__title_text__reset_password_successful">Reset Password Successful</string>
+    <string name="login_screen__text__reset_password_successful">The password reset email has been successfully sent</string>
+    <string name="login_screen__text__reset_password_error">Reset Password Error</string>
+    <string name="login_screen__text__generic_error">An error has occurred</string>
+    <string name="login_screen__text_btn__ok" translatable="false">OK</string>
+    <string name="login_screen__reset_password_dialog__title">Reset Password</string>
+    <string name="login_screen__reset_password_dialog__first_field_label">Email</string>
+    <string name="login_screen__reset_password_dialog__second_field_label">Confirm Email</string>
+    <string name="login_screen__reset_password_dialog__confirm_button_text">Reset</string>
+    <string name="login_screen__reset_password_dialog__cancel_button_text">Cancel</string>
+    <string name="login_screen__reset_password_dialog__explaining_text">Enter your email address\nWe will send you a message with a link to reset your password</string>
+    <string name="login_screen__resend_verification_email_dialog__title">Email not verified</string>
+    <string name="login_screen__resend_verification_email_dialog__first_field_label">Email</string>
+    <string name="login_screen__resend_verification_email_dialog__second_field_label">Confirm Email</string>
+    <string name="login_screen__resend_verification_email_dialog__confirm_button_text">Resend</string>
+    <string name="login_screen__resend_verification_email_dialog__cancel_button_text">Cancel</string>
+    <string name="login_screen__resend_verification_email_dialog__explaining_text">We have detected that your email has not been verified\nWe can resend a message with a link to verify your email\nIf you want to do so, please enter your email</string>
+    <string name="login_screen__reset_password_success">Password has been reset</string>
+    <string name="login_screen__verification_email_sent">Verification email sent</string>
+    <string name="login_screen__login_text">Sign in with Email</string>
+    <string name="login_screen__google_login_text">Sign in with Google</string>
+
+    <!-- Custom Login Text Field -->
+    <string name="custom_login_text_field__content_description__password_eye_image">Toggle password visibility button</string>
+    <string name="custom_login_text_field__content_description__ic_info">Info Icon</string>
+    <string name="custom_login_text_field__supporting_text__empty_field">Fill in this field</string>
+    <string name="custom_login_text_field__supporting_text__invalid_email">Invalid email</string>
+    <string name="custom_login_text_field__supporting_text__invalid_password">Invalid password</string>
+    <string name="custom_login_text_field__supporting_text__emails_do_not_match">Fields do not match</string>
+    <string name="custom_login_text_field__supporting_text__wrong_email">Wrong Email</string>
+    <string name="custom_login_text_field__supporting_text__wrong_password">Wrong password</string>
+    <string name="custom_login_text_field__supporting_text__email_too_long">Email too long</string>
+    <string name="custom_login_text_field__supporting_text__password_too_short">Password too short</string>
+    <string name="custom_login_text_field__supporting_text__password_too_long">Password too long</string>
+    <string name="custom_login_text_field__supporting_text__username_too_long">Username too long</string>
+    <string name="custom_login_text_field__supporting_text__invalid_field">Invalid field</string>
+
+    <!-- Error Messages -->
+    <string name="error_message__login_failed">Login failed</string>
+    <string name="error_message__login__empty_email">You must enter an email</string>
+    <string name="error_message__login__empty_password">You must enter a password</string>
+    <string name="error_message__login__email_not_verified">Your email is not verified</string>
+    <string name="error_message__login__unknown_error">An unknown error has occurred</string>
+    <string name="error_message__login__firebase_error">Firebase error</string>
+    <string name="error_message__login__email_not_registered">Your email is not registered</string>
+    <string name="error_message__login__wrong_password">Your password is wrong</string>
+    <string name="error_message__login__network_error">A network error has occurred</string>
+    <string name="error_message__reset_password__empty_email">You must enter an email</string>
+    <string name="error_message__reset_password__unknown_error">An unknown error has occurred</string>
+    <string name="error_message__reset_password__firebase_error">Firebase error</string>
+    <string name="error_message__google_sign_in__unknown_error">An unknown error has occurred</string>
+    <string name="error_message__google_sign_in__empty_id_token">You must enter an ID token</string>
+    <string name="error_message__google_sign_in__invalid_id_token">Invalid ID token</string>
+    <string name="error_message__resend_verification_email__empty_email">You must enter an email</string>
+    <string name="error_message__resend_verification_email__unknown_error">An unknown error has occurred</string>
+    <string name="error_message__resend_verification_email__firebase_error">Firebase error</string>
+    <string name="error_message__firebase__network_error">A network error has occurred</string>
+    <string name="error_message__firebase__invalid_user">Invalid user</string>
+    <string name="error_message__firebase__invalid_credentials">Invalid credentials</string>
+    <string name="error_message__firebase__user_collision">User collision</string>
+    <string name="error_message__firebase__user_disabled">User disabled</string>
+    <string name="error_message__firebase__too_many_requests">Too many requests</string>
+    <string name="error_message__firebase__unknown_error">An unknown error has occurred</string>
+
+    <!-- Test -->
+    <string name="hello_world" translatable="false">Hello World</string>
+    <string name="hello_name" translatable="false">Hello, %s!</string>
+
+</resources>
